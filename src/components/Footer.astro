@@ -1,0 +1,15 @@
+---
+const locale = Astro.props.locale || "en";
+const t = Astro.props.t;
+const year = new Date().getFullYear();
+
+---
+<footer>
+  <div class="container footer-inner">
+    <div>© {year} Parallel Works</div>
+    <nav class="nav-links" aria-label="Footer">
+      <a href="#privacy">{t.privacy}</a>
+      <a href="#terms">{t.terms}</a>
+    </nav>
+  </div>
+</footer>

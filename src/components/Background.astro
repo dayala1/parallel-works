@@ -1,0 +1,201 @@
+---
+export interface Props {
+  size?: number; // square size in px
+  gap?: number; // gap in px
+  squareColor?: string; // any CSS color
+  maxCells?: number; // performance cap (auto scales square size if exceeded)
+  autoScale?: boolean; // allow auto scale to respect maxCells
+  zIndex?: number; // stacking level (content still clickable via pointer-events: none)
+  overscan?: number; // extra padding around viewport in px (prevents gaps when rotated)
+}
+
+const {
+  size = 3,
+  gap = 55,
+  squareColor = "#ffffff",
+  maxCells = 4000,
+  autoScale = true,
+  zIndex = 0,
+  overscan = 250,
+} = Astro.props as Props;
+---
+
+<div
+  id="bg-grid"
+  class="bg-grid"
+  style={`--square-size:${size}px; --square-gap:${gap}px; --square-color:${squareColor}; --overscan:${overscan}px; z-index:${zIndex};`}
+  data-max-cells={String(maxCells)}
+  data-auto-scale={String(autoScale)}
+>
+</div>
+
+<style is:global>
+  .bg-grid {
+    transform-origin: center;
+    position: fixed;
+    /* expand beyond viewport to allow rotation without gaps */
+    left: calc(var(--overscan, 0px) * -1);
+    top: calc(var(--overscan, 0px) * -1);
+    width: calc(100vw + var(--overscan, 0px) * 2);
+    height: calc(100vh + var(--overscan, 0px) * 2);
+    pointer-events: none; /* never block UI */
+    display: grid;
+    grid-auto-rows: var(--square-size);
+    gap: var(--square-gap);
+    /* columns are set dynamically for perfect fit */
+    background: transparent;
+    z-index: -1 !important;
+  }
+
+  .bg-square {
+    width: var(--square-size);
+    height: var(--square-size);
+    background-color: var(--square-color);
+    will-change: transform, opacity;
+    opacity: 0.16;
+    transform: scale(1);
+  }
+</style>
+
+<script>
+  import { animate, stagger, utils, createTimeline } from "animejs";
+  let rows = 0;
+  let cols = 0;
+
+  (() => {
+    const container = document.getElementById("bg-grid");
+    if (!container) return;
+
+    const getPxVar = (el, name) =>
+      parseFloat(getComputedStyle(el).getPropertyValue(name)) || 0;
+
+    const baseSize = getPxVar(container, "--square-size");
+    const baseGap = getPxVar(container, "--square-gap");
+    const overscan = getPxVar(container, "--overscan");
+    const maxCells = parseInt(
+      container.getAttribute("data-max-cells") || "4000",
+      10
+    );
+    const autoScale = container.getAttribute("data-auto-scale") !== "false";
+
+    let ticking = false;
+
+    function build() {
+      // Use viewport size plus overscan padding
+      const w = window.innerWidth + overscan * 2;
+      const h = window.innerHeight + overscan * 2;
+
+      let size = baseSize;
+      const gap = baseGap;
+
+      // Initial estimate
+      const cell0 = size + gap;
+      cols = Math.ceil(w / cell0);
+      rows = Math.ceil(h / cell0);
+      let total = cols * rows;
+
+      // Auto scale up the square size to respect maxCells (keeps coverage)
+      if (autoScale && total > maxCells) {
+        const scale = Math.sqrt(total / maxCells);
+        size = Math.ceil(size * scale);
+        container.style.setProperty("--square-size", `${size}px`);
+        const cell1 = size + gap;
+        cols = Math.ceil(w / cell1);
+        rows = Math.ceil(h / cell1);
+        total = cols * rows;
+      }
+
+      // Set exact columns
+      container.style.gridTemplateColumns = `repeat(${cols}, var(--square-size))`;
+
+      // Reconcile children
+      const current = container.children.length;
+      if (current > total) {
+        for (let i = current - 1; i >= total; i--) {
+          const last = container.lastElementChild;
+          if (last) container.removeChild(last);
+        }
+      } else if (current < total) {
+        const frag = document.createDocumentFragment();
+        for (let i = current; i < total; i++) {
+          const d = document.createElement("div");
+          d.className = "bg-square";
+          frag.appendChild(d);
+        }
+        container.appendChild(frag);
+      }
+
+      
+        const $squares = utils.$(".bg-square");
+      function animateGrid() {
+        animate($squares, {
+          duration: 5000,
+          y: [{ to: [1,15]}, { to: [15,1] }, {to:1}],
+          // scale: [{ to: [1,2]}, { to: [2,1] }, {to:1}],
+          opacity: [{ to: [0.16,0.5]}, { to: [0.5,0.16] }, {to:0.16}],
+          delay: stagger(200, {
+            grid: [cols, rows],
+            from: utils.random(0, rows * cols - 1),
+            reversed: true,
+          }),
+          onComplete: animateGrid,
+        });
+      }
+
+      animateGrid();
+
+      const tl = createTimeline({ loop: false });
+
+      tl.label("start")
+        .add(
+          "#bar_blue",
+          { x: "+=72%", duration: 800, ease: "outElastic(1, 0.9)" },
+          "start"
+        )
+        .add(
+          "#bar_purple",
+          { x: "-=72%", duration: 800, ease: "outElastic(1, 0.9)" },
+          "start"
+        )
+        .add("#bar_blue", { opacity: 1, duration: 400 }, "start")
+        .add("#bar_purple", { opacity: 1, duration: 400 }, "start")
+        .add(
+          "#bar_blue",
+          {
+            x: "-=2%",
+            y: "+=3.3px",
+            fill: "#6ee7ff",
+            duration: 400,
+            ease: "outBack",
+          },
+          "+=100"
+        )
+        .add(
+          "#bar_purple",
+          {
+            x: "+=2%",
+            y: "-=3.3px",
+            fill: "#a78bfa",
+            duration: 400,
+            ease: "outBack",
+          },
+          "<<"
+        )
+        .add("#text", { opacity: 1, duration: 1500, ease: "inQuad" }, ">")
+        .add("#bg-grid", { rotate: "16.5deg" }, ">");
+
+    }
+
+    function onResize() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        build();
+        ticking = false;
+      });
+    }
+
+    // Initial paint
+    onResize();
+  })();
+</script>

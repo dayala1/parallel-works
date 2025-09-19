@@ -1,0 +1,7 @@
+---
+const locale = Astro.props.locale || "en";
+const otherLang = locale === 'ja' ? 'en' : 'ja';
+const base = otherLang === 'en' ? '/' : '/ja/';
+const label = otherLang === 'en' ? 'English' : '日本語';
+---
+<a id="lang-switch" href={`${base}`}>{label}</a>

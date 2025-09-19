@@ -1,0 +1,101 @@
+---
+export interface Props {
+  lang?: 'en' | 'ja' | string;
+  title?: string;
+  description?: string;
+  url?: string; // site origin, e.g. https://parallel.works
+}
+
+const {
+  lang = 'en',
+  title = 'Parallel Works',
+  description = 'Advanced computation & data services: bioinformatics, data analysis, astrodynamics, statistical studies.',
+  url = Astro.site?.toString() ?? 'https://parallel.works',
+} = Astro.props as Props;
+
+const pageTitle = `${title}`;
+const origin = url.replace(/\/$/, '');
+const path = Astro.url?.pathname ?? '/';
+const canonical = `${origin}${path}`;
+const ogImage = `${origin}/banner.webp`;
+const ogLocale = lang === 'ja' ? 'ja_JP' : 'en_US';
+import "../styles/global.css";
+---
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0b0d10" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="en" href={`${origin}/en/`} />
+    <link rel="alternate" hreflang="ja" href={`${origin}/ja/`} />
+    <link rel="alternate" hreflang="x-default" href={`${origin}/en/`} />
+
+    <title>{pageTitle}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Parallel Works" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Parallel Works banner" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Parallel Works banner" />
+
+    <!-- JSON-LD Organization -->
+    <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Parallel Works',
+      url: origin,
+      sameAs: [],
+      description,
+      logo: `${origin}/favicon.svg`
+    })}
+    </script>
+
+    <!-- JSON-LD WebSite -->
+    <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Parallel Works',
+      url: origin,
+      inLanguage: lang
+    })}
+    </script>
+
+    <!-- Performance: preload local fonts -->
+    <link rel="preload" href="/fonts/Oxanium-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/TextMeOne-Regular.ttf" as="font" type="font/ttf" crossorigin />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <div id="popup-container"></div>
+    <slot />
+  </body>
+</html>

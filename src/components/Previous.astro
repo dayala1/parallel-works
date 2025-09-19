@@ -1,0 +1,64 @@
+---
+const locale = Astro.props.locale || "en";
+const t = Astro.props.t;
+import Work from "./Work.astro";
+---
+
+<section id="previous" class="section">
+  <div class="container">
+    <h2>{t.previous.title}</h2>
+    <p class="muted">{t.previous.subtitle}</p>
+
+    <div id="previousWorks">
+      {
+        t.previous.items?.map((item) => (
+          <Work
+            id={item.title.toLowerCase().replace(/\s+/g, '-')}
+            title={item.title}
+            description={item.desc}
+            image={item.image}
+            links={item.links}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #previousWorks {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+  }
+</style>
+
+<script>
+  // on document load, put popups at popup container
+  document.addEventListener("DOMContentLoaded", () => {
+    const workItems = document.querySelectorAll(".work-item");
+    let popupContainer = document.getElementById("popup-container");
+    workItems.forEach((item) => {
+      const popup = item.querySelector(".popup");
+      if (popup) {
+        popupContainer.appendChild(popup);
+      }
+    });
+  });
+
+  // when clicked, show popup
+  const workItems = document.querySelectorAll(".work-item");
+  workItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const popup = document.getElementById(item.getAttribute("data-popup-id"));
+      if (popup) {
+        popup.style.display = "flex";
+        setTimeout(() => {
+          popup.style.opacity = "1.0";
+        }, 10);
+      }
+    });
+  });
+</script>

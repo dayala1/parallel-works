@@ -1,0 +1,65 @@
+---
+const t = Astro.props.t;
+import logo from "/logo.svg?raw";
+---
+
+<section class="hero container">
+  <div id="logo">
+    <Fragment set:html={logo} />
+  </div>
+  <div class="hero-text">
+    <p class="sub">{t.hero.subtitle}</p>
+    <p style="margin-top:16px; display:flex; gap:.8rem; flex-wrap:wrap;">
+      <a class="btn" href="#contact">{t.hero.ctaPrimary}</a>
+      <a class="badge" id="badge-services" href="#services"
+        >{t.hero.ctaSecondary}</a
+      >
+    </p>
+  </div>
+</section>
+
+<script>
+  import { createTimeline } from "animejs";
+  const tl = createTimeline({ loop: false });
+
+  tl.label("start")
+    .add(
+      "#bar_blue",
+      { x: "+=72%", duration: 800, ease: "outElastic(1, 0.9)" },
+      "start"
+    )
+    .add(
+      "#bar_purple",
+      { x: "-=72%", duration: 800, ease: "outElastic(1, 0.9)" },
+      "start"
+    )
+    .add("#bar_blue", { opacity: 1, duration: 400 }, "start")
+    .add("#bar_purple", { opacity: 1, duration: 400 }, "start")
+    .add(
+      "#bar_blue",
+      {
+        x: "-=2%",
+        y: "+=3.3px",
+        filter: "drop-shadow(0 0 3px rgba(110, 231, 255, 0.7)) drop-shadow(0 0 1px rgba(150, 255, 255, 0.7))",
+        fill: "#6ee7ff",
+        duration: 400,
+        ease: "outBack",
+      },
+      "+=100"
+    )
+    .add(
+      "#bar_purple",
+      {
+        x: "+=2%",
+        y: "-=3.3px",
+        filter: "drop-shadow(0 0 3px rgba(167, 139, 250, 0.7)) drop-shadow(0 0 1px rgba(200, 180, 255, 0.7))",
+        fill: "#a78bfa",
+        duration: 400,
+        ease: "outBack",
+      },
+      "<<"
+    )
+    .add("#bg-grid", { rotate: "16.5deg", duration: 400, ease: "outBack(1.5)" }, "<<")
+    .add("#text", { opacity: 1, duration: 1500, ease: "inQuad" }, ">");
+    
+</script>

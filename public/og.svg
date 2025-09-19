@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6ee7ff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0b0d10"/>
+  <g>
+    <circle cx="980" cy="80" r="220" fill="rgba(167,139,250,0.12)"/>
+    <circle cx="140" cy="300" r="260" fill="rgba(34,211,238,0.10)"/>
+  </g>
+  <g font-family="Segoe UI,Roboto,Inter,Arial" fill="#e6edf3">
+    <text x="80" y="260" font-size="72" font-weight="800">Parallel Works</text>
+    <text x="80" y="330" font-size="28" opacity="0.85">Advanced computation & data services</text>
+  </g>
+  <rect x="80" y="380" width="360" height="8" fill="url(#g)" rx="4"/>
+</svg>

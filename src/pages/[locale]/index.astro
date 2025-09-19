@@ -1,0 +1,87 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' }},
+    { params: { locale: 'ja' }},
+  ];
+}
+const {locale} = Astro.params ;
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+import Previous from "../../components/Previous.astro";
+import About from "../../components/About.astro";
+import BackgroundCanvas from "../../components/BackgroundCanvas.astro";
+import Contact from "../../components/Contact.astro";
+import LangSwitch from "../../components/LangSwitch.astro";
+import { loadI18n } from "../../i18n/load";
+const t = await loadI18n(locale);
+---
+
+<BaseLayout lang={locale} title="Parallel Works" description={t.hero.subtitle}>
+  <link slot="head" rel="canonical" href="/" />
+  <Header locale={locale} t={t}>
+    <LangSwitch slot="lang" locale={locale} t={t}/>
+  </Header>
+
+  <main>
+
+    <Hero locale={locale} t={t}/>
+
+    <Services locale={locale} t={t}/>
+
+    <Previous locale={locale} t={t}/>
+
+    <!-- <About /> -->
+
+    <Contact locale={locale} t={t}/>
+
+    <BackgroundCanvas size={1} gap={20} overscan={250} squareColor="#dddddd" />
+  </main>
+
+  <Footer locale={locale} t={t}/>
+</BaseLayout>
+
+<script>
+  // Skip on touch devices
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+      const cards = document.querySelectorAll(".rotable");
+      const MAX_TILT = 8; // degrees
+
+      cards.forEach((card) => {
+        let rafId = 0;
+
+        function onMove(e) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          // normalize to [-1, 1]
+          const px = (x / rect.width) * 2 - 1;
+          const py = (y / rect.height) * 2 - 1;
+
+          const rotY = px * MAX_TILT; // left/right
+          const rotX = -py * MAX_TILT; // up/down (invert so up tilts back)
+
+          if (rafId) return;
+          rafId = requestAnimationFrame(() => {
+            card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.2, 1.2, 1.2)`;
+            rafId = 0;
+          });
+        }
+
+        function onEnter() {}
+
+        function onLeave() {
+          card.style.transform = "rotateX(0) rotateY(0)";
+        }
+
+        card.addEventListener("pointerenter", onEnter);
+        card.addEventListener("pointermove", onMove);
+        card.addEventListener("pointerleave", onLeave);
+      });
+    }
+  });
+</script>

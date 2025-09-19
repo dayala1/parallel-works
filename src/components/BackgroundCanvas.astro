@@ -1,0 +1,227 @@
+---
+export interface Props {
+  size?: number; // square size in px
+  gap?: number; // gap in px
+  squareColor?: string; // any CSS color
+  maxCells?: number; // performance cap (auto scales square size if exceeded)
+  autoScale?: boolean; // allow auto scale to respect maxCells
+  zIndex?: number; // stacking level (content still clickable via pointer-events: none)
+  overscan?: number; // extra padding around viewport in px (prevents gaps when rotated)
+  startDelay?: number; // seconds to delay the very first wave
+}
+
+const {
+  size = 3,
+  gap = 55,
+  squareColor = '#ffffff',
+  maxCells = 4000,
+  autoScale = true,
+  zIndex = 0,
+  overscan = 250,
+  startDelay = 1200,
+} = Astro.props as Props;
+---
+
+<div
+  id="bg-grid"
+  class="bg-grid"
+  style={`--square-size:${size}px; --square-gap:${gap}px; --square-color:${squareColor}; --overscan:${overscan}px; z-index:${zIndex};`}
+  data-max-cells={String(maxCells)}
+  data-auto-scale={String(autoScale)}
+  data-start-delay={String(startDelay)}
+>
+  <canvas id="bg-grid-canvas"></canvas>
+</div>
+
+<style is:global>
+  .bg-grid {
+    transform-origin: center;
+    position: fixed;
+    /* expand beyond viewport to allow rotation without gaps */
+    left: calc(var(--overscan, 0px) * -1);
+    top: calc(var(--overscan, 0px) * -1);
+    width: calc(100vw + var(--overscan, 0px) * 2);
+    height: calc(100vh + var(--overscan, 0px) * 2);
+    pointer-events: none; /* never block UI */
+    background: transparent;
+    z-index: -1 !important;
+  }
+
+  #bg-grid-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+  (() => {
+    const container = document.getElementById('bg-grid');
+    const canvas = document.getElementById('bg-grid-canvas');
+    if (!container || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const getPxVar = (el, name) =>
+      parseFloat(getComputedStyle(el).getPropertyValue(name)) || 0;
+
+    const baseSize = getPxVar(container, '--square-size');
+    const baseGap = getPxVar(container, '--square-gap');
+    const overscan = getPxVar(container, '--overscan');
+    const maxCells = parseInt(container.getAttribute('data-max-cells') || '4000', 10);
+    const autoScale = container.getAttribute('data-auto-scale') !== 'false';
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let size = baseSize;
+    let gap = baseGap;
+    let cols = 0;
+    let rows = 0;
+    let positions = []; // { gx, gy, x, y }
+
+    function resizeCanvas() {
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      const cssW = container.clientWidth;
+      const cssH = container.clientHeight;
+      canvas.width = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // draw in CSS pixels
+    }
+
+    function rebuild() {
+      // Use viewport size plus overscan padding (container already includes overscan in CSS sizing)
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+
+      size = baseSize;
+      gap = baseGap;
+
+      const cell0 = size + gap;
+      cols = Math.ceil(w / cell0);
+      rows = Math.ceil(h / cell0);
+      let total = cols * rows;
+
+      if (autoScale && total > maxCells) {
+        const scale = Math.sqrt(total / maxCells);
+        size = Math.ceil(size * scale);
+        const cell1 = size + gap;
+        cols = Math.ceil(w / cell1);
+        rows = Math.ceil(h / cell1);
+        total = cols * rows;
+      }
+
+      positions = [];
+      const step = size + gap;
+      for (let gy = 0; gy < rows; gy++) {
+        for (let gx = 0; gx < cols; gx++) {
+          positions.push({ gx, gy, x: gx * step, y: gy * step });
+        }
+      }
+    }
+
+    function hexToRGBA(hex, alpha = 1) {
+      // supports #rgb and #rrggbb
+      const s = hex.replace('#', '');
+      const isShort = s.length === 3;
+      const r = parseInt(isShort ? s[0] + s[0] : s.substring(0, 2), 16);
+      const g = parseInt(isShort ? s[1] + s[1] : s.substring(2, 4), 16);
+      const b = parseInt(isShort ? s[2] + s[2] : s.substring(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    // Read color from CSS var to avoid relying on server props in client script
+    const computedColor = getComputedStyle(container).getPropertyValue('--square-color').trim() || '#ffffff';
+    let color = computedColor;
+    let baseAlpha = 0.16;
+    const colorIsHex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color);
+
+    // Expanding wavefront parameters (no sine over distance)
+    const WAVE_SPEED = 10;   // cells per second
+    const WAVE_WIDTH = 10;   // band width in cells
+    const START_DELAY = 1.6;
+    let center = { cx: 0, cy: 0 };
+    let centerInitialized = false;
+    let waveStart = 0; // seconds
+
+    function maxDistanceFromCenter() {
+      // farthest corner distance in cells
+      const d1 = Math.hypot(center.cx, center.cy);
+      const d2 = Math.hypot((cols - 1) - center.cx, center.cy);
+      const d3 = Math.hypot(center.cx, (rows - 1) - center.cy);
+      const d4 = Math.hypot((cols - 1) - center.cx, (rows - 1) - center.cy);
+      return Math.max(d1, d2, d3, d4);
+    }
+
+    function bandEnvelope(distance, radius, width) {
+      // 1 at the band center (radius), tapers to 0 at +/- width
+      const band = Math.abs(distance - radius);
+      let t = 1 - band / Math.max(1e-6, width);
+      t = Math.max(0, Math.min(1, t));
+      // smooth falloff
+      return t * t * (3 - 2 * t);
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const time = t * 0.001; // seconds
+
+      if (!centerInitialized && cols && rows) {
+        center.cx = Math.floor(cols / 2);
+        center.cy = Math.floor(rows / 2);
+        centerInitialized = true;
+        waveStart = time + START_DELAY; // apply initial delay only once
+      }
+
+      if (centerInitialized) {
+        const r = (time - waveStart) * WAVE_SPEED;
+        const maxD = maxDistanceFromCenter();
+        // Restart wave when it fully exits, ensuring a blank baseline between waves
+        if (r > maxD + WAVE_WIDTH) {
+          waveStart = time; // reset from blank state
+        }
+      }
+
+      const r = centerInitialized ? (time - waveStart) * WAVE_SPEED : 0;
+      const amp = reduceMotion ? 0 : 10; // px subtle vertical drift
+      const peak = 0.5; // max opacity when wave passes
+
+      for (let i = 0; i < positions.length; i++) {
+        const p = positions[i];
+        const d = Math.hypot(p.gx - center.cx, p.gy - center.cy); // in cells
+        const env = reduceMotion ? 0 : bandEnvelope(d, r, WAVE_WIDTH);
+
+        // Vertical shimmer tied to the wavefront, not distance sine. Also, nearest to the center moves more
+        const dy = amp * env * (1 - d / maxDistanceFromCenter())*3;
+        const y = p.y + dy;
+
+        // Opacity rises briefly as the wave band passes, then returns to base
+        const op = reduceMotion ? baseAlpha : baseAlpha + (peak - baseAlpha) * env;
+
+        if (colorIsHex) {
+          ctx.fillStyle = hexToRGBA(color, op);
+          ctx.globalAlpha = 1;
+        } else {
+          ctx.globalAlpha = op;
+          ctx.fillStyle = color; // assume rgba/hsla
+        }
+
+        ctx.fillRect(Math.round(p.x), Math.round(y), size, size);
+      }
+
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    function onResize() {
+      resizeCanvas();
+      rebuild();
+    }
+
+    const ro = new ResizeObserver(onResize);
+    ro.observe(container);
+
+    // Initial paint
+    onResize();
+    requestAnimationFrame(draw);
+  })();
+</script>

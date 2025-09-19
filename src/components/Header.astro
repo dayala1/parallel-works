@@ -1,0 +1,25 @@
+---
+const locale = Astro.props.locale || "en";
+const t = Astro.props.t;
+---
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href={'/'+locale} class="brand" aria-label="Parallel Works Home">
+      <img src="/logo_static.svg" id="header-logo" alt="Parallel Works Logo"/>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">{t.services.label}</a>
+      <a href="#previous">{t.previous.label}</a>
+      <a href="#contact">{t.contact.label}</a>
+      <slot name="lang" />
+    </nav>
+  </div>
+  
+</header>
+
+<style>
+  #header-logo {
+    height: 50px;
+    margin-right: 8px;
+  }
+</style>

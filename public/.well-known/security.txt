@@ -1,0 +1,3 @@
+Contact: mailto:security@parallel.works
+Policy: https://parallel.works/
+Preferred-Languages: en, ja

@@ -1,0 +1,57 @@
+hero:
+  badge: "高度な計算とデータサービス"
+  title: "Parallel Works"
+  subtitle: ""
+  ctaPrimary: "無料相談"
+  ctaSecondary: "サービスを見る"
+previous:
+  label: "実績"
+  title: "これまでの実績"
+  subtitle: "過去に手がけたプロジェクトの一部です。詳細はお問い合わせください。"
+  items:
+    - title: "Gintegrator"
+      desc: "複数の生物学的配列データベース間で遺伝子・タンパク質のIDを相互変換できるウェブアプリケーション。Rパッケージ「ginmappeR」を活用し、最新のデータベース間でのID変換を支援します。"
+      image: "/previous/gintegrator-logo.svg"
+      links:
+        - link: https://github.com/DEAL-US/gintegrator
+          title: "Gintegrator（GitHub）"
+          tag: "code"
+        - link: https://bioconductor.org/packages/release/bioc/html/ginmappeR.html
+          title: "Bioconductor の ginmappeR"
+          tag: "code"
+        - link: https://doi.org/10.1093/bioadv/vbae129
+          title: "ginmappeR 論文"
+          tag: "paper"
+    - title: "OpenSkies"
+      desc: "航空データの取得と分析のためのパッケージ"
+      image: "/previous/openskies.png"
+      links:
+        - link: https://cran.r-project.org/web/packages/openSkies/index.html
+          title: "CRAN の openSkies"
+          tag: "code"
+        - link: http://dx.doi.org/10.32614/RJ-2021-095
+          title: "openSkies 論文"
+          tag: "paper"
+    - title: "asteRisk"
+      desc: "既知の状態ベクトルから衛星の位置を計算するための基本機能を提供します。軌道状態ベクトルを伝播する簡略摂動モデル SGP4/SDP4 の実装に加え、TLE の読み込みや座標系の変換ユーティリティを備えています。"
+      image: "/previous/logo_asterisk.png"
+services:
+  label: "サービス"
+  title: "サービス"
+  subtitle: "私たちのサービスは、さまざまな科学分野の課題に最新の計算手法で取り組むことに焦点を当てています。データモデリングと分析の高い専門性を活かし、複雑な課題に取り組み、使いやすいソリューションを提供します。以下は特に経験のある分野の一例です。"
+  items:
+    - title: "データとインサイト"
+      desc: "データを分析し、わかりやすく実行可能な結果を提供します。可視化、機械学習の活用、統計分析などに対応します。"
+      image: "/analytics.svg"
+    - title: "バイオインフォマティクス"
+      desc: "研究・開発チーム向けに、生物学データの処理と解釈を支援します。ゲノミクス、データ統合、再現可能なワークフローなど。"
+    - title: "宇宙・モデリング"
+      desc: "ミッションの意思決定を支えるため、軌道やシステムの計画・シミュレーションを行います。既存アルゴリズムやツールの実装・改良にも対応します。"
+about:
+  title: "概要"
+  body: "Parallel Works は研究志向のコンサルティング会社です。明確なコミュニケーション、透明な手法、再現可能な技術を重視し、チームと伴走して発見と成果の創出を加速します。"
+contact:
+  label: "お問い合わせ"
+  title: "お問い合わせ"
+  body: "課題、目標、希望スケジュールをお知らせください。2〜3営業日以内にご連絡いたします。」"
+  button: "メールで問い合わせる"

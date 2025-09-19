@@ -1,0 +1,58 @@
+hero:
+  badge: "Advanced computation & data services"
+  title: "Parallel Works"
+  subtitle: ""
+  ctaPrimary: "Free consultation"
+  ctaSecondary: "See our services"
+previous:
+  label: "Works"
+  title: "Previous Works"
+  subtitle: "These are some of our previous projects. Please contact us for more details."
+  items:
+    - title: "Gintegrator"
+      desc: "A web application that provides functionalities for translating gene or protein identifiers across various biological sequence databases. Makes use of ginmappeR, a R package to translate gene or protein identifiers between state-of-art biological databases"
+      image: "/previous/gintegrator-logo.svg"
+      links: 
+        - link: https://github.com/DEAL-US/gintegrator
+          title: "Gintegrator on GitHub"
+          tag: "code"
+        - link: https://bioconductor.org/packages/release/bioc/html/ginmappeR.html
+          title: "ginmappeR on Bioconductor"
+          tag: "code"
+        - link: https://doi.org/10.1093/bioadv/vbae129
+          title: "ginmappeR paper"
+          tag: "paper"
+    - title: "OpenSkies"
+      desc: "A package for the retrieval and analysis of aviation data"
+      image: "/previous/openskies.png"
+      links: 
+        - link: https://cran.r-project.org/web/packages/openSkies/index.html
+          title: "openSkies on CRAN"
+          tag: "code"
+        - link: http://dx.doi.org/10.32614/RJ-2021-095
+          title: "openSkies paper"
+          tag: "paper"
+    - title: "asteRisk"
+      desc: "asteRisk provides basic functionalities to calculate the position of satellites given a known state vector. The package includes implementations of the SGP4 and SDP4 simplified perturbation models to propagate orbital state vectors, as well as utilities to read TLE files and convert coordinates between different frames of reference."
+      image: "/previous/logo_asterisk.png"
+services:
+  label: "Services"
+  title: "Services"
+  subtitle: "Our services focus on the use of modern computational techniques to problems in all kinds of scientific domains. With considerable expertise in data modeling and analysis, we can tackle complex challenges and deliver easy-to-use solutions. While our services are not limited to the following areas, we have particular experience in them:"
+  items:
+    - title: "Data & Insights"
+      desc: "We analyze your data and present clear, actionable results, including data visualization, application of deep learning models, and statystical analysis."
+      image: "/analytics.svg"
+    - title: "Bioinformatics"
+      desc: "We process and interpret biological data for research and product teams, including genomics, data integration, and reproducible workflows."
+    - title: "Space & Modeling"
+      desc: "We plan and simulate orbits and systems to support mission decisions, implementing and improving existing algorithms and tools."
+about:
+  title: "About"
+  body: "Parallel Works is a research-driven consultancy focused on clear communication, transparent methods, and reproducible technology. We partner with teams to accelerate discovery and delivery."
+contact:
+  label: "Contact" 
+  title: "Contact"
+  body: "Tell us about your problem, goals, and timeline. We respond within 2–3 business days."
+  button: "Email us"
+  

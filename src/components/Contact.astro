@@ -1,0 +1,14 @@
+---
+const locale = Astro.props.locale || "en";
+const t = Astro.props.t;
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="cta">
+      <strong>{t.contact.title}</strong>
+      <p class="muted" style="margin: 0;">{t.contact.body}</p>
+      <a class="btn" href="mailto:contact@parallel.works">{t.contact.button}</a>
+    </div>
+  </div>
+</section>

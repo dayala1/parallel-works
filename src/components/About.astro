@@ -1,0 +1,11 @@
+---
+const locale = Astro.props.locale || "en";
+const t = Astro.props.t;
+---
+
+<section id="about" class="section">
+  <div class="container">
+    <h2>{t.about.title}</h2>
+    <p class="muted">{t.about.body}</p>
+  </div>
+</section>

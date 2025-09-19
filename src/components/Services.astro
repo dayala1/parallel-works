@@ -1,0 +1,87 @@
+---
+const locale = Astro.props.locale || "en";
+const t = Astro.props.t;
+import analytics from "/analytics.svg?raw";
+import bioinformatics from "/bioinformatics.svg?raw";
+import astrodyn from "/astro.svg?raw";
+---
+
+<section id="services" class="section">
+  <div class="container">
+    <h2>{t.services.title}</h2>
+    <p class="muted">{t.services.subtitle}</p>
+    <div id="services-container" style="margin-top: 16px;">
+      <div class="service-container">
+        <article class="service rotable">
+          <div class="service-image">
+            <Fragment set:html={analytics} />
+          </div>
+          <h3 class="service-title">{t.services.items?.[0]?.title}</h3>
+          <p>{t.services.items?.[0]?.desc}</p>
+        </article>
+      </div>
+
+      <div class="service-container">
+        <article class="service rotable">
+          <div class="service-image">
+            <Fragment set:html={bioinformatics} />
+          </div>
+          <h3 class="service-title">{t.services.items?.[1]?.title}</h3>
+          <p>{t.services.items?.[1]?.desc}</p>
+        </article>
+      </div>
+
+      <div class="service-container">
+        <article class="service rotable">
+          <div class="service-image">
+            <Fragment set:html={astrodyn} />
+          </div>
+          <h3 class="service-title">{t.services.items?.[2]?.title}</h3>
+          <p>{t.services.items?.[2]?.desc}</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .visible-shapes path {
+    fill: #a78bfa !important;
+  }
+
+  .service-image {
+    margin: -10px;
+  }
+
+  .hidden-shapes path {
+    fill: #00000000 !important;
+    transition: fill 0.3s;
+  }
+
+  .service:hover svg {
+    .hidden-shapes path {
+      fill: #8ce0edff !important;
+      filter: drop-shadow(0 0 5px #22d3ee) drop-shadow(0 0 1px #ffffff66);
+    }
+  }
+</style>
+
+<script>
+  import { animate, onScroll, stagger } from "animejs";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animate(".service", {
+      opacity: [0, 1],
+      translateY: ["100%", "0%"],
+      translateZ: ["500px", "0px"],
+      delay: stagger(100),
+      duration: 1000,
+      autoplay: onScroll({
+        target:"#services-container",
+        enter: "90% top",
+        leave: "80% top",
+        sync: 0.1,
+      }),
+    });
+  });
+</script>
