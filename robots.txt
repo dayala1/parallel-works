@@ -1,0 +1,17 @@
+# Allow all bots to crawl public content; block sensitive or low-value endpoints.
+User-agent: *
+Disallow: /admin/
+Disallow: /api/private/
+Disallow: /auth/
+Disallow: /login
+Disallow: /logout
+Disallow: /signup
+Disallow: /cart
+Disallow: /checkout
+Disallow: /search
+Allow: /assets/
+Allow: /static/
+Allow: /public/
+
+# Update to your production domain (must be an absolute URL)
+Sitemap: https://www.your-domain.com/sitemap.xml
