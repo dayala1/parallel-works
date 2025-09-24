@@ -18,9 +18,11 @@ import Contact from "../../components/Contact.astro";
 import LangSwitch from "../../components/LangSwitch.astro";
 import { loadI18n } from "../../i18n/load";
 const t = await loadI18n(locale);
+const description = t.meta.description;
+const title = t.meta.title;
 ---
 
-<BaseLayout lang={locale} title="Parallel Works">
+<BaseLayout lang={locale} title={title} description={description}>
   <link slot="head" rel="canonical" href="https://parallelworks.tech/" />
   <Header locale={locale} t={t}>
     <LangSwitch slot="lang" locale={locale} t={t}/>
