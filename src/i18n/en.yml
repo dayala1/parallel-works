@@ -22,8 +22,8 @@ previous:
         - link: https://doi.org/10.1093/bioadv/vbae129
           title: "ginmappeR paper"
           tag: "paper"
-    - title: "OpenSkies"
-      desc: "A package for the retrieval and analysis of aviation data"
+    - title: "openSkies"
+      desc: "An R package for processing public air traffic data. The package provides an interface to the OpenSky Network resources, standardized data structures to represent the different entities involved in air traffic data, and functionalities to analyze and visualize such data. Furthermore, the portability of the implemented data structures makes openSkies easily reusable by other packages, therefore laying the foundation of aviation data engineering in R."
       image: "/previous/openskies.png"
       links: 
         - link: https://cran.r-project.org/web/packages/openSkies/index.html
@@ -33,8 +33,15 @@ previous:
           title: "openSkies paper"
           tag: "paper"
     - title: "asteRisk"
-      desc: "asteRisk provides basic functionalities to calculate the position of satellites given a known state vector. The package includes implementations of the SGP4 and SDP4 simplified perturbation models to propagate orbital state vectors, as well as utilities to read TLE files and convert coordinates between different frames of reference."
+      desc: "A comprehensive suite for astrodynamics analysis in R. The package includes implementations of some of the most frequently applied orbital propagators, including the SGP4 and SDP4 models, as well as a high-precision numerical orbital propagator. Additionally, utilities for reading file formats commonly used to distribute satellite positions (ephemerides), as well as to perform conversion between different frames of reference and time systems are provided."
       image: "/previous/logo_asterisk.png"
+      links: 
+        - link: https://cran.r-project.org/web/packages/asteRisk/index.html
+          title: "asteRisk on CRAN"
+          tag: "code"
+        - link: http://dx.doi.org/10.32614/RJ-2023-023
+          title: "asteRisk paper"
+          tag: "paper"
 services:
   label: "Services"
   title: "Services"
