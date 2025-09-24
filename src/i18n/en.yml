@@ -49,11 +49,14 @@ services:
   items:
     - title: "Data & Insights"
       desc: "We analyze your data and present clear, actionable results, including data visualization, application of deep learning models, and statystical analysis."
-      image: "/analytics.svg"
     - title: "Bioinformatics"
       desc: "We process and interpret biological data for research and product teams, including genomics, data integration, and reproducible workflows."
     - title: "Space & Modeling"
       desc: "We plan and simulate orbits and systems to support mission decisions, implementing and improving existing algorithms and tools."
+    - title: "Neural network model development"
+      desc: "We develop custom neural network models tailored to your specific needs, ensuring optimal performance and accuracy for your applications."
+    - title: "Website development & deployment"
+      desc: "We build websites with a focus on modern aesthetics and performance."
 about:
   title: "About"
   body: "Parallel Works is a research-driven consultancy focused on clear communication, transparent methods, and reproducible technology. We partner with teams to accelerate discovery and delivery."

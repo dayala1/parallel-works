@@ -4,6 +4,8 @@ const t = Astro.props.t;
 import analytics from "/analytics.svg?raw";
 import bioinformatics from "/bioinformatics.svg?raw";
 import astrodyn from "/astro.svg?raw";
+import network from "/network.svg?raw";
+import web from "/web.svg?raw";
 ---
 
 <section id="services" class="section">
@@ -40,6 +42,25 @@ import astrodyn from "/astro.svg?raw";
           <p>{t.services.items?.[2]?.desc}</p>
         </article>
       </div>
+
+      <div class="service-container">
+        <article class="service rotable">
+          <div class="service-image">
+            <Fragment set:html={network} />
+          </div>
+          <h3 class="service-title">{t.services.items?.[3]?.title}</h3>
+          <p>{t.services.items?.[3]?.desc}</p>
+        </article>
+      </div>
+
+      <div class="service-container">
+        <article class="service rotable">
+          <div class="service-image">
+            <Fragment set:html={web} />
+          </div>
+          <h3 class="service-title">{t.services.items?.[4]?.title}</h3>
+          <p>{t.services.items?.[4]?.desc}</p>
+        </article>
     </div>
   </div>
 </section>
