@@ -19,6 +19,9 @@ previous:
         - link: https://github.com/DEAL-US/gintegrator
           title: "Gintegrator on GitHub"
           tag: "code"
+        - link: https://doi.org/10.1016/j.softx.2025.102041
+          title: "Gintegrator paper"
+          tag: "paper"
         - link: https://bioconductor.org/packages/release/bioc/html/ginmappeR.html
           title: "ginmappeR on Bioconductor"
           tag: "code"
@@ -27,7 +30,7 @@ previous:
           tag: "paper"
     - title: "openSkies"
       desc: "An R package for processing public air traffic data. The package provides an interface to the OpenSky Network resources, standardized data structures to represent the different entities involved in air traffic data, and functionalities to analyze and visualize such data. Furthermore, the portability of the implemented data structures makes openSkies easily reusable by other packages, therefore laying the foundation of aviation data engineering in R."
-      image: "/previous/openskies.png"
+      image: "/previous/openskies.webp"
       links: 
         - link: https://cran.r-project.org/web/packages/openSkies/index.html
           title: "openSkies on CRAN"
@@ -37,13 +40,48 @@ previous:
           tag: "paper"
     - title: "asteRisk"
       desc: "A comprehensive suite for astrodynamics analysis in R. The package includes implementations of some of the most frequently applied orbital propagators, including the SGP4 and SDP4 models, as well as a high-precision numerical orbital propagator. Additionally, utilities for reading file formats commonly used to distribute satellite positions (ephemerides), as well as to perform conversion between different frames of reference and time systems are provided."
-      image: "/previous/logo_asterisk.png"
+      image: "/previous/logo_asterisk.webp"
       links: 
         - link: https://cran.r-project.org/web/packages/asteRisk/index.html
           title: "asteRisk on CRAN"
           tag: "code"
         - link: http://dx.doi.org/10.32614/RJ-2023-023
           title: "asteRisk paper"
+          tag: "paper"
+    - title: "R packages"
+      desc: "We develop and maintain a number of R packages for data analysis, visualization, and computational tasks. These packages are designed to be user-friendly and efficient, helping researchers and analysts streamline their workflows."
+      image: "/previous/logo_r.webp"
+      links: 
+        - link: https://cran.r-project.org/web/packages/openSkies/index.html
+          title: "openSkies on CRAN"
+          tag: "code"
+        - link: https://cran.r-project.org/web/packages/asteRisk/index.html
+          title: asteRisk on CRAN
+          tag: "code"
+    - title: "Academic research"
+      desc: "We conduct academic research in various fields. Our research is published in peer-reviewed journals and presented at conferences, contributing to the advancement of knowledge in these areas."
+      image: "/previous/research.webp"
+      links: 
+        - link: https://doi.org/10.1093/bioadv/vbae129
+          title: "ginmappeR: an unified approach for integrating gene and protein identifiers across biological sequence databases"
+          tag: "paper"
+        - link: https://doi.org/10.1016/j.softx.2025.102041
+          title: "Gintegrator: Enhancing biological sequences data integration with real-time identifier translation"
+          tag: "paper"
+        - link: http://dx.doi.org/10.32614/RJ-2021-095
+          title: "openSkies - Integration of Aviation Data into the R Ecosystem"
+          tag: "paper"
+        - link: http://dx.doi.org/10.32614/RJ-2023-023
+          title: "asteRisk - Integration and Analysis of Satellite Positional Data in R"
+          tag: "paper"
+        - link: https://doi.org/10.1016/j.eswa.2025.127453
+          title: "Refining satellite trajectories with celestial body features using neural networks"
+          tag: "paper"
+        - link: https://doi.org/10.1109/ACCESS.2023.3255404
+          title: "Neural networks for aircraft trajectory prediction"
+          tag: "paper"
+        - link: https://doi.org/10.1016/j.softx.2023.101474
+          title: "AYNEXT: Tools for streamlining the evaluation of link prediction techniques"
           tag: "paper"
 services:
   label: "Services"

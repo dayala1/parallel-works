@@ -27,7 +27,7 @@ previous:
           tag: "paper"
     - title: "openSkies"
       desc: "航空データの取得と分析のためのパッケージ"
-      image: "/previous/openskies.png"
+      image: "/previous/openskies.webp"
       links:
         - link: https://cran.r-project.org/web/packages/openSkies/index.html
           title: "CRAN の openSkies"
@@ -37,13 +37,48 @@ previous:
           tag: "paper"
     - title: "asteRisk"
       desc: "Rにおける天体力学解析のための包括的なスイート。パッケージには、SGP4およびSDP4モデルを含む、最も頻繁に使用される軌道伝搬器の実装に加え、高精度の数値軌道伝搬器が含まれています。さらに、衛星位置（暦表）を配布するために一般的に使用されるファイル形式の読み込みや、異なる基準座標系や時間体系間の変換を行うためのユーティリティも提供されています。"
-      image: "/previous/logo_asterisk.png"
+      image: "/previous/logo_asterisk.webp"
       links: 
         - link: https://cran.r-project.org/web/packages/asteRisk/index.html
           title: "CRAN の asteRisk"
           tag: "code"
         - link: http://dx.doi.org/10.32614/RJ-2023-023
           title: "asteRisk 論文"
+          tag: "paper"
+    - title: "Rパッケージ"
+      desc: "データ分析、可視化、計算タスクのための複数のRパッケージを開発・維持しています。これらのパッケージは使いやすさと効率性を重視して設計されており、研究者やアナリストのワークフローの効率化に役立ちます。"
+      image: "/previous/logo_r.webp"
+      links:
+        - link: https://cran.r-project.org/web/packages/openSkies/index.html
+          title: "CRAN の openSkies"
+          tag: "code"
+        - link: https://cran.r-project.org/web/packages/asteRisk/index.html
+          title: "CRAN の asteRisk"
+          tag: "code"
+    - title: "学術研究"
+      desc: "私たちはさまざまな分野で学術研究を行っています。研究成果は査読付き学術誌に掲載され、学会で発表されることで、各分野の知識の発展に貢献しています。"
+      image: "/previous/research.webp"
+      links:
+        - link: https://doi.org/10.1093/bioadv/vbae129
+          title: "ginmappeR: 生物配列データベース間で遺伝子・タンパク質識別子を統合するための統一的アプローチ"
+          tag: "paper"
+        - link: https://doi.org/10.1016/j.softx.2025.102041
+          title: "Gintegrator: リアルタイム識別子変換による生物配列データ統合の強化"
+          tag: "paper"
+        - link: http://dx.doi.org/10.32614/RJ-2021-095
+          title: "openSkies - 航空データのRエコシステムへの統合"
+          tag: "paper"
+        - link: http://dx.doi.org/10.32614/RJ-2023-023
+          title: "asteRisk - 衛星位置データのRでの統合と解析"
+          tag: "paper"
+        - link: https://doi.org/10.1016/j.eswa.2025.127453
+          title: "天体特徴量とニューラルネットワークを用いた衛星軌道の高精度化"
+          tag: "paper"
+        - link: https://doi.org/10.1109/ACCESS.2023.3255404
+          title: "航空機軌道予測のためのニューラルネットワーク"
+          tag: "paper"
+        - link: https://doi.org/10.1016/j.softx.2023.101474
+          title: "AYNEXT: リンク予測手法の評価を効率化するためのツール"
           tag: "paper"
 services:
   label: "サービス"
