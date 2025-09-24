@@ -22,7 +22,7 @@ previous:
         - link: https://doi.org/10.1093/bioadv/vbae129
           title: "ginmappeR 論文"
           tag: "paper"
-    - title: "OpenSkies"
+    - title: "openSkies"
       desc: "航空データの取得と分析のためのパッケージ"
       image: "/previous/openskies.png"
       links:
@@ -33,8 +33,15 @@ previous:
           title: "openSkies 論文"
           tag: "paper"
     - title: "asteRisk"
-      desc: "既知の状態ベクトルから衛星の位置を計算するための基本機能を提供します。軌道状態ベクトルを伝播する簡略摂動モデル SGP4/SDP4 の実装に加え、TLE の読み込みや座標系の変換ユーティリティを備えています。"
+      desc: "Rにおける天体力学解析のための包括的なスイート。パッケージには、SGP4およびSDP4モデルを含む、最も頻繁に使用される軌道伝搬器の実装に加え、高精度の数値軌道伝搬器が含まれています。さらに、衛星位置（暦表）を配布するために一般的に使用されるファイル形式の読み込みや、異なる基準座標系や時間体系間の変換を行うためのユーティリティも提供されています。"
       image: "/previous/logo_asterisk.png"
+      links: 
+        - link: https://cran.r-project.org/web/packages/asteRisk/index.html
+          title: "CRAN の asteRisk"
+          tag: "code"
+        - link: http://dx.doi.org/10.32614/RJ-2023-023
+          title: "asteRisk 論文"
+          tag: "paper"
 services:
   label: "サービス"
   title: "サービス"
