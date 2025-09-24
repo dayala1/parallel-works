@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://parallel.works',
+  site: 'https://parallelworks.tech',
   output: 'static',
   integrations: [sitemap()],
   redirects:{
