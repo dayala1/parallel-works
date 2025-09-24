@@ -20,10 +20,11 @@ import { loadI18n } from "../../i18n/load";
 const t = await loadI18n(locale);
 const description = t.meta.description;
 const title = t.meta.title;
+const canonical = locale === 'en' ? 'https://parallelworks.tech/' : 'https://parallelworks.tech/ja/';
 ---
 
 <BaseLayout lang={locale} title={title} description={description}>
-  <link slot="head" rel="canonical" href="https://parallelworks.tech/" />
+  <link slot="head" rel="canonical" href={canonical} />
   <Header locale={locale} t={t}>
     <LangSwitch slot="lang" locale={locale} t={t}/>
   </Header>
