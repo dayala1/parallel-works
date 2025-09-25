@@ -56,7 +56,25 @@ previous:
           title: "openSkies on CRAN"
           tag: "code"
         - link: https://cran.r-project.org/web/packages/asteRisk/index.html
-          title: asteRisk on CRAN
+          title: "asteRisk on CRAN"
+          tag: "code"
+        - link: https://bioconductor.org/packages/ginmappeR/
+          title: "ginmappeR on Bioconductor"
+          tag: "code"
+        - link: https://bioconductor.org/packages/ncRNAtools/
+          title: "ncRNAtools on Bioconductor"
+          tag: "code"
+        - link: https://bioconductor.org/packages/rfaRm/
+          title: "rfaRm on Bioconductor"
+          tag: "code"
+        - link: https://cran.r-project.org/web/packages/NutrienTrackeR/index.html
+          title: "NutrienTrackeR on CRAN"
+          tag: "code"
+        - link: https://bioconductor.org/packages/MWASTools/
+          title: "MWASTools on Bioconductor"
+          tag: "code"
+        - link: https://bioconductor.org/packages/MetaboSignal/
+          title: "MetaboSignal on Bioconductor"
           tag: "code"
     - title: "Academic research"
       desc: "We conduct academic research in various fields. Our research is published in peer-reviewed journals and presented at conferences, contributing to the advancement of knowledge in these areas."
@@ -82,6 +100,30 @@ previous:
           tag: "paper"
         - link: https://doi.org/10.1016/j.softx.2023.101474
           title: "AYNEXT: Tools for streamlining the evaluation of link prediction techniques"
+          tag: "paper"
+        - link: https://doi.org/10.1186/s13073-016-0352-6
+          title: "Topological analysis of metabolic networks integrating co-segregating transcriptomes and metabolomes in type 2 diabetic rat congenic series"
+          tag: "paper"
+        - link: https://doi.org/10.1093/bioinformatics/btw697
+          title: "MetaboSignal: a network-based approach for topological analysis of metabotype regulation via metabolic and signaling pathways"
+          tag: "paper"
+        - link: https://doi.org/10.1021/acs.analchem.7b02374
+          title: "J-Resolved 1H NMR 1D-Projections for Large-Scale Metabolic Phenotyping Studies: Application to Blood Plasma Analysis"
+          tag: "paper"
+        - link: https://doi.org/10.1093/bioinformatics/btx477
+          title: "MWASTools: an R/bioconductor package for metabolome-wide association studies"
+          tag: "paper"
+        - link: https://doi.org/10.1002/cpbi.41
+          title: "Exploring the Genetic Landscape of Metabolic Phenotypes with MetaboSignal"
+          tag: "paper"
+        - link: https://doi.org/10.1101/602458
+          title: "A network-based data-mining approach to investigate indole-related microbiota-host co-metabolism"
+          tag: "paper"
+        - link: https://doi.org/10.1093/bioinformatics/bty837
+          title: "pJRES Binning Algorithm (JBA): a new method to facilitate the recovery of metabolic information from pJRES 1H NMR spectra"
+          tag: "paper"
+        - link: https://doi.org/10.1371/journal.pone.0245280
+          title: "rfaRm: An R client-side interface to facilitate the analysis of the Rfam database of RNA families"
           tag: "paper"
 services:
   label: "Services"

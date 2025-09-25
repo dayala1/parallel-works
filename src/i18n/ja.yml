@@ -55,6 +55,24 @@ previous:
         - link: https://cran.r-project.org/web/packages/asteRisk/index.html
           title: "CRAN の asteRisk"
           tag: "code"
+        - link: https://bioconductor.org/packages/ginmappeR/
+          title: "Bioconductor の ginmappeR"
+          tag: "code"
+        - link: https://bioconductor.org/packages/ncRNAtools/
+          title: "Bioconductor の ncRNAtools"
+          tag: "code"
+        - link: https://bioconductor.org/packages/rfaRm/
+          title: "Bioconductor の rfaRm"
+          tag: "code"
+        - link: https://cran.r-project.org/web/packages/NutrienTrackeR/index.html
+          title: "CRAN の NutrienTrackeR"
+          tag: "code"
+        - link: https://bioconductor.org/packages/MWASTools/
+          title: "Bioconductor の MWASTools"
+          tag: "code"
+        - link: https://bioconductor.org/packages/MetaboSignal/
+          title: "Bioconductor の MetaboSignal"
+          tag: "code"
     - title: "学術研究"
       desc: "私たちはさまざまな分野で学術研究を行っています。研究成果は査読付き学術誌に掲載され、学会で発表されることで、各分野の知識の発展に貢献しています。"
       image: "/previous/research.webp"
@@ -79,6 +97,30 @@ previous:
           tag: "paper"
         - link: https://doi.org/10.1016/j.softx.2023.101474
           title: "AYNEXT: リンク予測手法の評価を効率化するためのツール"
+          tag: "paper"
+        - link: https://doi.org/10.1186/s13073-016-0352-6
+          title: "2型糖尿病ラット同系統における共分離トランスクリプトームおよびメタボロームを統合した代謝ネットワークの位相解析"
+          tag: "paper"
+        - link: https://doi.org/10.1093/bioinformatics/btw697
+          title: "MetaboSignal: 代謝・シグナル伝達経路を介したメタボタイプ制御の位相解析のためのネットワークベース手法"
+          tag: "paper"
+        - link: https://doi.org/10.1021/acs.analchem.7b02374
+          title: "大規模代謝表現型研究のためのJ-分解1H NMR一次元投影：血漿解析への応用"
+          tag: "paper"
+        - link: https://doi.org/10.1093/bioinformatics/btx477
+          title: "MWASTools: メタボローム全体関連研究のためのR/Bioconductorパッケージ"
+          tag: "paper"
+        - link: https://doi.org/10.1002/cpbi.41
+          title: "MetaboSignalを用いた代謝表現型の遺伝的景観の探索"
+          tag: "paper"
+        - link: https://doi.org/10.1101/602458
+          title: "インドール関連腸内細菌叢-宿主共代謝を調査するためのネットワークベースのデータマイニング手法"
+          tag: "paper"
+        - link: https://doi.org/10.1093/bioinformatics/bty837
+          title: "pJRES Binning Algorithm (JBA): pJRES 1H NMRスペクトルから代謝情報の回収を促進する新手法"
+          tag: "paper"
+        - link: https://doi.org/10.1371/journal.pone.0245280
+          title: "rfaRm: RNAファミリーのRfamデータベース解析を容易にするRクライアントサイドインターフェース"
           tag: "paper"
 services:
   label: "サービス"
