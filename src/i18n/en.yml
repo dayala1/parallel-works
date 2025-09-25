@@ -61,9 +61,6 @@ previous:
         - link: https://bioconductor.org/packages/ginmappeR/
           title: "ginmappeR on Bioconductor"
           tag: "code"
-        - link: https://bioconductor.org/packages/ginmappeR/
-          title: "ginmappeR on Bioconductor"
-          tag: "code"
         - link: https://bioconductor.org/packages/ncRNAtools/
           title: "ncRNAtools on Bioconductor"
           tag: "code"
