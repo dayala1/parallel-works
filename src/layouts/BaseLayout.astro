@@ -20,6 +20,7 @@ const canonical = `${origin}${path}`;
 const ogImage = `${origin}/banner.webp`;
 const ogLocale = lang === 'ja' ? 'ja_JP' : 'en_US';
 import "../styles/global.css";
+import Analytics from '@vercel/analytics/astro'
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -98,5 +99,6 @@ import "../styles/global.css";
   <body>
     <div id="popup-container"></div>
     <slot />
+    <Analytics />
   </body>
 </html>
