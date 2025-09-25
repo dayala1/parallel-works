@@ -71,7 +71,8 @@ const {
     const overscan = getPxVar(container, '--overscan');
     const maxCells = parseInt(container.getAttribute('data-max-cells') || '4000', 10);
     const autoScale = container.getAttribute('data-auto-scale') !== 'false';
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = false;
 
     let size = baseSize;
     let gap = baseGap;
