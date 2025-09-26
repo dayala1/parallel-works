@@ -21,6 +21,7 @@ const ogImage = `${origin}/banner.webp`;
 const ogLocale = lang === 'ja' ? 'ja_JP' : 'en_US';
 import "../styles/global.css";
 import Analytics from '@vercel/analytics/astro'
+import SpeedInsights from '@vercel/speed-insights/astro';
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -117,5 +118,6 @@ import Analytics from '@vercel/analytics/astro'
     <div id="popup-container"></div>
     <slot />
     <Analytics />
+    <SpeedInsights />
   </body>
 </html>
